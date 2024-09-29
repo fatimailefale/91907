@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block pageheading %}
+Dictionary
+{% endblock %}
+
+{% block main %}
+
+<div>
+    <form action="/dictionary" method="get" class="search-form">
+        <input type="text" name="search" placeholder="Search" value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<br>
+
+<div class="category-words">
+    <div class="category-list">
+        {% for catergory in catergories %}
+        <form action="/dictionary" method="get" class="category-form">
+            <input type="hidden" name="catergory_id" value="{{ catergory[0] }}">
+            <button type="submit">
+                {{ catergory[1] }}
+            </button>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+
+<div>
+    <h2>{{ catergory_name }}</h2>
+    {% if words %}
+    <div class="word-list">
+        {% for word in words %}
+        <div class="word-box">
+            <div class="word-box-heading">
+                <a href="/word/{{ word[0] }}">
+                    <h3>{{ word[1] }}</h3>
+                </a>
+            </div>
+            {% if word[7] %}
+            <div class="word-box-image">
+                <img src="/static/images/{{ word[7] }}.jpg" alt="{{ word[1] }} image" />
+            </div>
+            {% endif %}
+            <div class="word-box-info">
+                <p><strong>English:</strong> {{ word[2] }}</p>
+                <p><strong>Definition:</strong> {{ word[5] }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Words not found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

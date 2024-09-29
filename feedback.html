@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block pageheading %}
+    Feedback
+{% endblock %}
+
+{% block main %}
+    <div class="body">
+        <div class="box_pend">
+            <form action="/feedback" method="POST" class="myform">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name:</label>
+                    <div class="form-element">
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email:</label>
+                    <div class="form-element">
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Message:</label>
+                    <div class="form-element">
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <input type="submit" value="Submit Feedback">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

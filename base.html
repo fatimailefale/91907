@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Te Reo Navigator | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-brand">Te Reo Navigator</div>
+        <div class="navbar-links">
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="/">Home</a>
+                    <a href="/dictionary">Dictionary</a>
+                    <a href="/account">Account</a>
+                    {% if logged_in %}
+                        <a href="/logout">Logout</a>
+                    {% else %}
+                        <a href="/login">Login</a>
+                    {% endif %}
+                    <a href="/feedback">Feedback</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <header>
+        <h1>Te Reo Navigator</h1>
+        <h2>{% block pageheading %}{% endblock %}</h2>
+    </header>
+
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+</div>
+
+<footer>
+    <p>&copy; FLefale WEGC: Te Reo Navigator </p>
+</footer>
+</body>
+
+</html>

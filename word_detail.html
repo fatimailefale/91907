@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block pageheading %}
+  {{ word[1] }} - {{ word[2] }}
+{% endblock %}
+
+{% block main %}
+<div class="word-detail">
+    {% if word[7] %} 
+        <img src="/static/images/{{ word[7] }}.jpg" alt="{{ word[1] }} image" class="word-image">
+    {% endif %}
+    <p><strong>Definition:</strong> {{ word[5] }}</p>
+    <p><strong>Year Level:</strong> {{ word[6] }}</p>
+    <p><strong>Date Added:</strong> {{ word[8] }}</p>
+    <p>Addition made by {{ word[9] }}</p>
+</div>
+
+{% if session['role_id'] == 2 %}
+    <form action="/delete_entry/{{ word[0] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this word? This cannot be undone.');">
+        <button type="submit" class="btn-delete">Delete Word</button>
+    </form>
+{% endif %}
+
+{% endblock %}

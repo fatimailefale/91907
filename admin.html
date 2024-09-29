@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block pageheading %}
+  Administration
+{% endblock %}
+
+{% block main %}
+
+<form class="myform" method="post" action="/add_word">
+  <h3>Add a Word</h3>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="maori">Māori Word:</label>
+    </div>
+    <div class="form-element">
+      <input type="text" name="maori" id="maori" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="english">English Translation:</label>
+    </div>
+    <div class="form-element">
+      <input type="text" name="english" id="english" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="definition">Definition:</label>
+    </div>
+    <div class="form-element">
+      <input type="text" name="definition" id="definition" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="level">Year Level:</label>
+    </div>
+    <div class="form-element">
+      <input type="number" name="level" id="level" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="image_path">Image Name (optional):</label>
+    </div>
+    <div class="form-element">
+      <input type="text" name="image_path" id="image_path">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="cat_id">Category:</label>
+    </div>
+    <div class="form-element">
+      <select id="cat_id" name="cat_id" required>
+        {% for category in categories %}
+          <option value="{{ category[0] }}">{{ category[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <button type="submit">Add Word</button>
+</form>
+
+<form class="myform" method="post" action="/delete_word">
+  <h3>Delete a Word</h3>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="english_word">Enter English Word:</label>
+    </div>
+    <div class="form-element">
+      <input type="text" name="english_word" id="english_word" required>
+    </div>
+  </div>
+  <button type="submit">Delete Word</button>
+</form>
+
+<form class="myform" method="post" action="/add_category">
+  <h3>Add Category</h3>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="name">Category Name:</label>
+    </div>
+    <div class="form-element">
+      <input type="text" name="name" id="name" required>
+    </div>
+  </div>
+  <button type="submit">Add</button>
+</form>
+
+<form class="myform" method="post" action="/delete_category">
+  <h3>Delete Category</h3>
+  <div class="form-group">
+    <div class="form-label">
+      <label for="cat_id">Select Category:</label>
+    </div>
+    <div class="form-element">
+      <select id="cat_id" name="cat_id" required>
+        {% for category in categories %}
+          <option value="{{ category[0] }}">{{ category[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <button type="submit">Delete Category</button>
+</form>
+
+{% endblock %}

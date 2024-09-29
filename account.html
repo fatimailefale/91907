@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Your Account{% endblock %}
+
+{% block main %}
+<div class="account-info">
+    <h2>Welcome, {{ session['firstname'] }}!</h2> 
+    
+    <h3>Account Details</h3>
+    <p><strong>Username:</strong> {{ user['username'] }}</p>
+    <p><strong>First Name:</strong> {{ user['first_name'] }}</p>
+    <p><strong>Last Name:</strong> {{ user['last_name'] }}</p>
+    <p><strong>Email:</strong> {{ user['email'] }}</p>
+    <p><strong>Role:</strong> 
+        {% if user['role_id'] == 1 %}
+            Student
+        {% elif user['role_id'] == 2 %}
+            Teacher
+        {% endif %}
+    </p>
+    <br>
+    
+    <h3>Role Abilities</h3>
+    {% if user['role_id'] == 1 %}
+        <p>As a Student you may view the dictionary! Please send feedback using the feedback page if you have any suggestions.</p>
+        <a href="/dictionary" class="btn">View Dictionary</a>
+        <a href="/feedback" class="btn">Feedback</a>
+    {% elif user['role_id'] == 2 %}
+        <p>As a Teacher you have the power to modify the dictionary! Choose "Manage" to Add/Delete Categories or Words!</p>
+        <a href="/admin" class="btn">Manage</a>
+        <a href="/dictionary" class="btn">View Dictionary</a>
+    {% endif %}
+
+    <a href="/logout">Logout</a>
+</div>
+{% endblock %}
